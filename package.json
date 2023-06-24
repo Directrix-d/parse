@@ -23,7 +23,6 @@
     "parse": "4.1.0",
     "parse-server": "6.2.0"
   },
-  "type": "module",
   "devDependencies": {
     "@babel/eslint-parser": "7.21.3",
     "@semantic-release/changelog": "6.0.3",
