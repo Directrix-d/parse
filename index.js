@@ -1,22 +1,49 @@
 // Example express application adding the parse-server module to expose Parse
 // compatible API routes.
 
-import express from 'express';
-import { ParseServer } from 'parse-server';
-import path from 'path';
+const express = require('express');
+const { ParseServer } = require('parse-server');
+const path = require('path');
 const __dirname = path.resolve();
-import http from 'http';
+const http = require('http');
 
-export const config = {
-  databaseURI:
-    process.env.DATABASE_URI || process.env.MONGODB_URI || 'mongodb://localhost:27017/dev',
+
+const config = {
+  databaseURI: 'mongodb+srv://deepakdirectrix:root1234@cluster0.qvrflm9.mongodb.net/'
+,
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
-  appId: process.env.APP_ID || 'myAppId',
-  masterKey: process.env.MASTER_KEY || '', //Add your master key here. Keep it secret!
-  serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse', // Don't forget to change to https if needed
-  liveQuery: {
-    classNames: ['Posts', 'Comments'], // List of classes to support for query subscriptions
-  },
+  appId: process.env.APP_ID || 'eqfnoenooijvjolwrjc',
+  masterKey: process.env.MASTER_KEY || 'qwertkhfouherwiouhfourwhy',
+  maxUploadSize: '20mb',
+  serverURL:
+    // ENVIRONMENT === 'production'
+    //   ? ''
+      // : 
+  'http://localhost:1337/parse',
+      liveQuery: {
+        classNames: ['_User'], // List of classes to support for query subscriptions
+      },
+      verifyUserEmails: false,
+      emailVerifyTokenValidityDuration: 2 * 60 * 60,
+      appName: 'Maxx Dashboard',
+      // emailAdapter: {
+      //   module: 'parse-smtp-template',
+      //   options: {
+      //     port: 465,
+      //     host: 'smtp.gmail.com',
+      //     user: 'vedant@xoogle.in',
+      //     password: 'randomInvalidPassword',
+      //     fromAddress: 'vedant@xoogle.in',
+      //     secure: true,
+      //     multiTemplate: true,
+      //     confirmTemplatePath: 'views/templates/verifyEmail.html',
+      //     passwordTemplatePath: 'views/templates/passwordReset.html',
+      //     passwordOptions: {
+      //       subject: 'Password recovery - Freecharge Dashboard',
+      //       btn: 'Reset Password',
+      //       body: 'sample body text',
+      //     },
+      //   },
 };
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
 // If you wish you require them, you can set them as options in the initialization above:
